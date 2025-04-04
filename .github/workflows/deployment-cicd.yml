@@ -1,23 +1,24 @@
 name: Production Deployment
 
 on: 
-    commit:
-        branches: main
-        paths:
-            - force-app/**
-    jobs:
-        test:
-            runs-on: ubuntu-latest
-            
-            
-     steps:
-        - name: Initializing Workflow
-        uses: actions/checkout@v2
-        
-        - name: Setting up SF CLI
-         uses: actions/setup-node@v2
-         with:
-            node-version: 20.0.0
+  push:
+    branches:
+      - main
+    paths:
+      - force-app/**
 
-         - name: Installing SF
-          run: npm install -g sfdx-cli
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Initializing Workflow
+        uses: actions/checkout@v2
+
+      - name: Setting up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.0.0'
+
+      - name: Installing Salesforce CLI
+        run: npm install -g sfdx-cli
