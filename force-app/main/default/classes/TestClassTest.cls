@@ -26,7 +26,7 @@ public class TestClassTest {
         // Act: Instantiate the class to cover the constructor
         TestClass obj = new TestClass();
 
-        // No assertions needed since it's just a constructor with a debug statement
+        
        // System.assertNotEquals(null, obj); // Optional, just to be explicit
     }
 }

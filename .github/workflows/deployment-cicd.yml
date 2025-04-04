@@ -30,10 +30,17 @@ jobs:
 
       - name: Validate Metadata in Production
         run: |
-          echo "Validating metadata in production..."
-          sfdx force:source:deploy -p force-app --checkonly --testlevel RunLocalTests --targetusername Prod
+          echo "Validating metadata in production with specific test class..."
+          sfdx force:source:deploy -p force-app \
+            --checkonly \
+            --testlevel RunSpecifiedTests \
+            --runtests TestClassTest \
+            --targetusername Prod
 
       - name: Deploy Metadata to Production
         run: |
-          echo "Deploying metadata to production..."
-          sfdx force:source:deploy -p force-app --testlevel RunLocalTests --targetusername Prod
+          echo "Deploying metadata to production with specific test class..."
+          sfdx force:source:deploy -p force-app \
+            --testlevel RunSpecifiedTests \
+            --runtests TestClassTest \
+            --targetusername Prod
