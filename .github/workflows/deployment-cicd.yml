@@ -22,3 +22,9 @@ jobs:
 
       - name: Installing Salesforce CLI
         run: npm install -g sfdx-cli
+      
+      - name: Authorize Production
+      run: |
+        echo "Salsforce authorization runnning"
+        sfdx org login sfdx-url --set default --sfdx-url-file <(echo "${{secrets.SF_PROD_AUTH_URL}}")
+
