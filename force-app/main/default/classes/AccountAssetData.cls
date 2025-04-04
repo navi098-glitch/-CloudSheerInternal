@@ -18,8 +18,8 @@ public class AccountAssetData {
                                    WHERE AccountId = :accId 
                                 ORDER BY AccountId, 
                                          Name, 
-                                         Version__c
-                                         ];
+                                         Version__c, 
+                                         SBQQ__PackageProductCode__c];
         system.debug('Asset Records: ' + listAssets);    
                               
         //Retrieve all Asset Ids

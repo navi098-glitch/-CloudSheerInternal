@@ -8,7 +8,7 @@ on:
       - force-app/**
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,3 +27,13 @@ jobs:
         run: |
           echo "Salesforce authorization running"
           sfdx auth:sfdxurl:store --sfdx-url-file <(echo "${{ secrets.SF_PROD_AUTH_URL }}") --set-default --alias Prod
+
+      - name: Validate Metadata in Production
+        run: |
+          echo "Validating metadata in production..."
+          sfdx force:source:deploy -p force-app --checkonly --testlevel RunLocalTests --targetusername Prod
+
+      - name: Deploy Metadata to Production
+        run: |
+          echo "Deploying metadata to production..."
+          sfdx force:source:deploy -p force-app --testlevel RunLocalTests --targetusername Prod
